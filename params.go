@@ -41,7 +41,7 @@ type Params struct {
 	Headers http.Header `form:"-"`
 
 	IdempotencyKey string            `form:"-"` // Passed as header
-	Meta           map[string]string `form:"metadata"`
+	Metadata       map[string]string `form:"metadata"`
 
 	// StripeAccount may contain the ID of a connected account. By including
 	// this field, the request is made as if it originated from the connected
@@ -184,11 +184,11 @@ func (p *Params) Expand(f string) {
 
 // AddMeta adds a new key-value pair to the Metadata.
 func (p *Params) AddMeta(key, value string) {
-	if p.Meta == nil {
-		p.Meta = make(map[string]string)
+	if p.Metadata == nil {
+		p.Metadata = make(map[string]string)
 	}
 
-	p.Meta[key] = value
+	p.Metadata[key] = value
 }
 
 // AddExtra adds a new arbitrary key-value pair to the request data
