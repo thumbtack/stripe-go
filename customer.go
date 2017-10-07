@@ -60,7 +60,7 @@ type Customer struct {
 	Metadata       map[string]string        `json:"metadata"`
 	Shipping       *CustomerShippingDetails `json:"shipping"`
 	Sources        *SourceList              `json:"sources"`
-	Subscriptions  *SubList                 `json:"subscriptions"`
+	Subscriptions  *SubscriptionList        `json:"subscriptions"`
 }
 
 // CustomerList is a list of customers as retrieved from a list endpoint.

@@ -51,12 +51,12 @@ type API struct {
 	// Cards is the client used to invoke /cards APIs.
 	// For more details see https://stripe.com/docs/api#cards.
 	Cards *card.Client
-	// Subs is the client used to invoke /subscriptions APIs.
+	// Subscriptions is the client used to invoke /subscriptions APIs.
 	// For more details see https://stripe.com/docs/api#subscriptions.
-	Subs *subscription.Client
-	// SubItems is the client used to invoke subscription's items-related APIs.
+	Subscriptions *subscription.Client
+	// SubscriptionItems is the client used to invoke subscription's items-related APIs.
 	// For more details see https://stripe.com/docs/api#subscription_items.
-	SubItems *subscriptionitem.Client
+	SubscriptionItems *subscriptionitem.Client
 	// Plans is the client used to invoke /plans APIs.
 	// For more details see https://stripe.com/docs/api#plans.
 	Plans *plan.Client
@@ -157,8 +157,8 @@ func (a *API) Init(key string, backends *Backends) {
 	a.Charges = &charge.Client{B: backends.API, Key: key}
 	a.Customers = &customer.Client{B: backends.API, Key: key}
 	a.Cards = &card.Client{B: backends.API, Key: key}
-	a.Subs = &subscription.Client{B: backends.API, Key: key}
-	a.SubItems = &subscriptionitem.Client{B: backends.API, Key: key}
+	a.Subscriptions = &subscription.Client{B: backends.API, Key: key}
+	a.SubscriptionItems = &subscriptionitem.Client{B: backends.API, Key: key}
 	a.Plans = &plan.Client{B: backends.API, Key: key}
 	a.Coupons = &coupon.Client{B: backends.API, Key: key}
 	a.Discounts = &discount.Client{B: backends.API, Key: key}

@@ -32,13 +32,13 @@ type InvoiceParams struct {
 
 	// These are all for exclusive use by GetNext.
 
-	SubscriptionItems         []*SubItemsParams `form:"subscription_items,indexed"`
-	SubscriptionNoProrate     bool              `form:"subscription_prorate,invert"`
-	SubscriptionPlan          string            `form:"subscription_plan"`
-	SubscriptionProrationDate int64             `form:"subscription_proration_date"`
-	SubscriptionQuantity      uint64            `form:"subscription_quantity"`
-	SubscriptionQuantityZero  bool              `form:"subscription_quantity,zero"`
-	SubscriptionTrialEnd      int64             `form:"subscription_trial_end"`
+	SubscriptionItems         []*SubscriptionItemsParams `form:"subscription_items,indexed"`
+	SubscriptionNoProrate     bool                       `form:"subscription_prorate,invert"`
+	SubscriptionPlan          string                     `form:"subscription_plan"`
+	SubscriptionProrationDate int64                      `form:"subscription_proration_date"`
+	SubscriptionQuantity      uint64                     `form:"subscription_quantity"`
+	SubscriptionQuantityZero  bool                       `form:"subscription_quantity,zero"`
+	SubscriptionTrialEnd      int64                      `form:"subscription_trial_end"`
 }
 
 // InvoiceListParams is the set of parameters that can be used when listing invoices.
