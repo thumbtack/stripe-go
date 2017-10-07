@@ -63,14 +63,14 @@ func (it *Iter) getPage() {
 // It returns false when the iterator stops
 // at the end of the list.
 func (it *Iter) Next() bool {
-	if len(it.values) == 0 && it.meta.More && !it.params.Single {
+	if len(it.values) == 0 && it.meta.HasMore && !it.params.Single {
 		// determine if we're moving forward or backwards in paging
 		if it.params.EndingBefore != "" {
 			it.params.EndingBefore = listItemID(it.cur)
-			it.qs.Set(endbefore, it.params.EndingBefore)
+			it.qs.Set(EndingBefore, it.params.EndingBefore)
 		} else {
 			it.params.StartingAfter = listItemID(it.cur)
-			it.qs.Set(startafter, it.params.StartingAfter)
+			it.qs.Set(StartingAfter, it.params.StartingAfter)
 		}
 		it.getPage()
 	}

@@ -19,7 +19,7 @@ func ExampleCharge_new() {
 		Currency: currency.USD,
 	}
 	params.SetSource("tok_visa")
-	params.AddMeta("key", "value")
+	params.AddMetadata("key", "value")
 
 	ch, err := charge.New(params)
 

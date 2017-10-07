@@ -13,8 +13,8 @@ import (
 )
 
 const (
-	endbefore  = "ending_before"
-	startafter = "starting_after"
+	EndingBefore  = "ending_before"
+	StartingAfter = "starting_after"
 )
 
 // Params is the structure that contains the common properties
@@ -103,9 +103,9 @@ type ListParams struct {
 // of List iterators. The Count property is only populated if the
 // total_count include option is passed in (see tests for example).
 type ListMeta struct {
-	Count uint32 `json:"total_count"`
-	More  bool   `json:"has_more"`
-	URL   string `json:"url"`
+	HasMore    bool   `json:"has_more"`
+	TotalCount uint32 `json:"total_count"`
+	URL        string `json:"url"`
 }
 
 // RangeQueryParams are a set of generic request parameters that are used on
@@ -182,8 +182,8 @@ func (p *Params) AddExpand(f string) {
 	p.Expand = append(p.Expand, f)
 }
 
-// AddMeta adds a new key-value pair to the Metadata.
-func (p *Params) AddMeta(key, value string) {
+// AddMetadata adds a new key-value pair to the Metadata.
+func (p *Params) AddMetadata(key, value string) {
 	if p.Metadata == nil {
 		p.Metadata = make(map[string]string)
 	}
