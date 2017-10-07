@@ -84,14 +84,14 @@ type Payout struct {
 	Amount                    int64               `json:"amount"`
 	ArrivalDate               int64               `json:"arrival_date"`
 	BalanceTransaction        *BalanceTransaction `json:"balance_transaction"`
-	Bank                      *BankAccount        `json:"bank_account"`
+	BankAccoun                *BankAccount        `json:"bank_account"`
 	Card                      *Card               `json:"card"`
 	Created                   int64               `json:"created"`
 	Currency                  Currency            `json:"currency"`
 	Destination               PayoutDestination   `json:"destination"`
-	FailCode                  PayoutFailureCode   `json:"failure_code"`
-	FailMessage               string              `json:"failure_message"`
 	FailureBalanceTransaction *BalanceTransaction `json:"failure_balance_transaction"`
+	FailureCode               PayoutFailureCode   `json:"failure_code"`
+	FailureMessage            string              `json:"failure_message"`
 	ID                        string              `json:"id"`
 	Livemode                  bool                `json:"livemode"`
 	Metadata                  map[string]string   `json:"metadata"`
