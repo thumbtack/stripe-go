@@ -44,9 +44,9 @@ const (
 // The Type should indicate which object is fleshed out.
 // For more details see https://stripe.com/docs/api#retrieve_balance_transaction
 type BalanceTransactionSource struct {
+	ApplicationFee    *ApplicationFee              `json:"-"`
 	Charge            *Charge                      `json:"-"`
 	Dispute           *Dispute                     `json:"-"`
-	Fee               *Fee                         `json:"-"`
 	ID                string                       `json:"id"`
 	Payout            *Payout                      `json:"-"`
 	RecipientTransfer *RecipientTransfer           `json:"-"`
@@ -157,12 +157,12 @@ func (s *BalanceTransactionSource) UnmarshalJSON(data []byte) error {
 		*s = BalanceTransactionSource(ss)
 
 		switch s.Type {
+		case BalanceTransactionSourceApplicationFee:
+			json.Unmarshal(data, &s.ApplicationFee)
 		case BalanceTransactionSourceCharge:
 			json.Unmarshal(data, &s.Charge)
 		case BalanceTransactionSourceDispute:
 			json.Unmarshal(data, &s.Dispute)
-		case BalanceTransactionSourceApplicationFee:
-			json.Unmarshal(data, &s.Fee)
 		case BalanceTransactionSourcePayout:
 			json.Unmarshal(data, &s.Payout)
 		case BalanceTransactionSourceRecipientTransfer:

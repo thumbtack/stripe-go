@@ -76,7 +76,7 @@ type Charge struct {
 	Amount              uint64              `json:"amount"`
 	AmountRefunded      uint64              `json:"amount_refunded"`
 	Application         *Application        `json:"application"`
-	ApplicationFee      *Fee                `json:"application_fee"`
+	ApplicationFee      *ApplicationFee     `json:"application_fee"`
 	BalanceTransaction  *BalanceTransaction `json:"balance_transaction"`
 	Captured            bool                `json:"captured"`
 	Created             int64               `json:"created"`
