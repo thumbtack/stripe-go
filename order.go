@@ -67,12 +67,12 @@ const (
 )
 
 type DeliveryEstimate struct {
-	Type EstimateType `json:"type"`
-	// If Type == Range
-	Earliest string `json:"earliest"`
-	Latest   string `json:"latest"`
 	// If Type == Exact
 	Date string `json:"date"`
+	// If Type == Range
+	Earliest string       `json:"earliest"`
+	Latest   string       `json:"latest"`
+	Type     EstimateType `json:"type"`
 }
 
 type Order struct {
