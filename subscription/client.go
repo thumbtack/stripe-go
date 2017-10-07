@@ -1,11 +1,20 @@
-// Package sub provides the /subscriptions APIs
-package subitem
+// Package subscription provides the /subscriptions APIs
+package subscription
 
 import (
 	"fmt"
 
 	stripe "github.com/stripe/stripe-go"
 	"github.com/stripe/stripe-go/form"
+)
+
+const (
+	Trialing stripe.SubStatus = "trialing"
+	Active   stripe.SubStatus = "active"
+	PastDue  stripe.SubStatus = "past_due"
+	Canceled stripe.SubStatus = "canceled"
+	Unpaid   stripe.SubStatus = "unpaid"
+	All      stripe.SubStatus = "all"
 )
 
 // Client is used to invoke /subscriptions APIs.
@@ -15,15 +24,14 @@ type Client struct {
 }
 
 // New POSTS a new subscription for a customer.
-// For more details see https://stripe.com/docs/api#create_subscription_item.
-func New(params *stripe.SubItemParams) (*stripe.SubItem, error) {
+// For more details see https://stripe.com/docs/api#create_subscription.
+func New(params *stripe.SubParams) (*stripe.Sub, error) {
 	return getC().New(params)
 }
 
-func (c Client) New(params *stripe.SubItemParams) (*stripe.SubItem, error) {
+func (c Client) New(params *stripe.SubParams) (*stripe.Sub, error) {
 	var body *form.Values
 	var commonParams *stripe.Params
-	token := c.Key
 
 	if params != nil {
 		commonParams = &params.Params
@@ -31,43 +39,43 @@ func (c Client) New(params *stripe.SubItemParams) (*stripe.SubItem, error) {
 		form.AppendTo(body, params)
 	}
 
-	item := &stripe.SubItem{}
-	err := c.B.Call("POST", "/subscription_items", token, body, commonParams, item)
-	return item, err
+	sub := &stripe.Sub{}
+	err := c.B.Call("POST", "/subscriptions", c.Key, body, commonParams, sub)
+
+	return sub, err
 }
 
 // Get returns the details of a subscription.
 // For more details see https://stripe.com/docs/api#retrieve_subscription.
-func Get(id string, params *stripe.SubItemParams) (*stripe.SubItem, error) {
+func Get(id string, params *stripe.SubParams) (*stripe.Sub, error) {
 	return getC().Get(id, params)
 }
 
-func (c Client) Get(id string, params *stripe.SubItemParams) (*stripe.SubItem, error) {
+func (c Client) Get(id string, params *stripe.SubParams) (*stripe.Sub, error) {
 	var body *form.Values
 	var commonParams *stripe.Params
 
 	if params != nil {
-		commonParams = &params.Params
 		body = &form.Values{}
 		form.AppendTo(body, params)
+		commonParams = &params.Params
 	}
 
-	item := &stripe.SubItem{}
-	err := c.B.Call("GET", fmt.Sprintf("/subscription_items/%v", id), c.Key, body, commonParams, item)
+	sub := &stripe.Sub{}
+	err := c.B.Call("GET", fmt.Sprintf("/subscriptions/%v", id), c.Key, body, commonParams, sub)
 
-	return item, err
+	return sub, err
 }
 
 // Update updates a subscription's properties.
 // For more details see https://stripe.com/docs/api#update_subscription.
-func Update(id string, params *stripe.SubItemParams) (*stripe.SubItem, error) {
+func Update(id string, params *stripe.SubParams) (*stripe.Sub, error) {
 	return getC().Update(id, params)
 }
 
-func (c Client) Update(id string, params *stripe.SubItemParams) (*stripe.SubItem, error) {
+func (c Client) Update(id string, params *stripe.SubParams) (*stripe.Sub, error) {
 	var body *form.Values
 	var commonParams *stripe.Params
-	token := c.Key
 
 	if params != nil {
 		commonParams = &params.Params
@@ -75,41 +83,41 @@ func (c Client) Update(id string, params *stripe.SubItemParams) (*stripe.SubItem
 		form.AppendTo(body, params)
 	}
 
-	subi := &stripe.SubItem{}
-	err := c.B.Call("POST", fmt.Sprintf("/subscription_items/%v", id), token, body, commonParams, subi)
+	sub := &stripe.Sub{}
+	err := c.B.Call("POST", fmt.Sprintf("/subscriptions/%v", id), c.Key, body, commonParams, sub)
 
-	return subi, err
+	return sub, err
 }
 
-// Del removes a subscription item.
+// Cancel removes a subscription.
 // For more details see https://stripe.com/docs/api#cancel_subscription.
-func Del(id string, params *stripe.SubItemParams) (*stripe.SubItem, error) {
-	return getC().Del(id, params)
+func Cancel(id string, params *stripe.SubParams) (*stripe.Sub, error) {
+	return getC().Cancel(id, params)
 }
 
-func (c Client) Del(id string, params *stripe.SubItemParams) (*stripe.SubItem, error) {
+func (c Client) Cancel(id string, params *stripe.SubParams) (*stripe.Sub, error) {
 	var body *form.Values
 	var commonParams *stripe.Params
 
 	if params != nil {
+		commonParams = &params.Params
 		body = &form.Values{}
 		form.AppendTo(body, params)
-		commonParams = &params.Params
 	}
 
-	item := &stripe.SubItem{}
-	err := c.B.Call("DELETE", fmt.Sprintf("/subscription_items/%v", id), c.Key, body, commonParams, item)
+	sub := &stripe.Sub{}
+	err := c.B.Call("DELETE", fmt.Sprintf("/subscriptions/%v", id), c.Key, body, commonParams, sub)
 
-	return item, err
+	return sub, err
 }
 
-// List returns a list of subscription items.
-// For more details see https://stripe.com/docs/api#list_subscription_items.
-func List(params *stripe.SubItemListParams) *Iter {
+// List returns a list of subscriptions.
+// For more details see https://stripe.com/docs/api#list_subscriptions.
+func List(params *stripe.SubListParams) *Iter {
 	return getC().List(params)
 }
 
-func (c Client) List(params *stripe.SubItemListParams) *Iter {
+func (c Client) List(params *stripe.SubListParams) *Iter {
 	var body *form.Values
 	var lp *stripe.ListParams
 	var p *stripe.Params
@@ -122,8 +130,8 @@ func (c Client) List(params *stripe.SubItemListParams) *Iter {
 	}
 
 	return &Iter{stripe.GetIter(lp, body, func(b *form.Values) ([]interface{}, stripe.ListMeta, error) {
-		list := &stripe.SubItemList{}
-		err := c.B.Call("GET", "/subscription_items", c.Key, b, p, list)
+		list := &stripe.SubList{}
+		err := c.B.Call("GET", "/subscriptions", c.Key, b, p, list)
 
 		ret := make([]interface{}, len(list.Data))
 		for i, v := range list.Data {
@@ -143,8 +151,8 @@ type Iter struct {
 
 // Sub returns the most recent Sub
 // visited by a call to Next.
-func (i *Iter) SubItem() *stripe.SubItem {
-	return i.Current().(*stripe.SubItem)
+func (i *Iter) Sub() *stripe.Sub {
+	return i.Current().(*stripe.Sub)
 }
 
 func getC() Client {
