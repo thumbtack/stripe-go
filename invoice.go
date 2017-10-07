@@ -69,10 +69,10 @@ type InvoiceLineListParams struct {
 // Invoice is the resource representing a Stripe invoice.
 // For more details see https://stripe.com/docs/api#invoice_object.
 type Invoice struct {
-	Amount              int64             `json:"amount_due"`
+	AmountDue           int64             `json:"amount_due"`
 	ApplicationFee      uint64            `json:"application_fee"`
-	Attempted           bool              `json:"attempted"`
 	AttemptCount        uint64            `json:"attempt_count"`
+	Attempted           bool              `json:"attempted"`
 	Billing             InvoiceBilling    `json:"billing"`
 	Charge              *Charge           `json:"charge"`
 	Closed              bool              `json:"closed"`
