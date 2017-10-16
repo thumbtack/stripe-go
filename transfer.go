@@ -32,7 +32,6 @@ type TransferListParams struct {
 	ListParams    `form:"*"`
 	Created       int64             `form:"created"`
 	CreatedRange  *RangeQueryParams `form:"created"`
-	Currency      Currency          `form:"currency"`
 	Destination   string            `form:"destination"`
 	TransferGroup string            `form:"transfer_group"`
 }
