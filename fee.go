@@ -6,7 +6,6 @@ import "encoding/json"
 // For more details see https://stripe.com/docs/api#refund_application_fee.
 type ApplicationFeeParams struct {
 	Params `form:"*"`
-	Amount uint64
 }
 
 // ApplicationFeeListParams is the set of parameters that can be used when listing application fees.
