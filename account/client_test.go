@@ -39,12 +39,12 @@ func TestAccountNew(t *testing.T) {
 	account, err := New(&stripe.AccountParams{
 		Type:                  stripe.AccountTypeCustom,
 		Country:               "CA",
-		BusinessUrl:           "www.stripe.com",
+		BusinessURL:           "www.stripe.com",
 		BusinessName:          "Stripe",
 		BusinessPrimaryColor:  "#ffffff",
 		DebitNegativeBalances: true,
 		SupportEmail:          "foo@bar.com",
-		SupportUrl:            "www.stripe.com",
+		SupportURL:            "www.stripe.com",
 		SupportPhone:          "4151234567",
 		LegalEntity: &stripe.LegalEntity{
 			Type:         stripe.Individual,

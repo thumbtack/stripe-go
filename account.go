@@ -64,7 +64,7 @@ type AccountParams struct {
 	Params                    `form:"*"`
 	BusinessName              string                        `form:"business_name"`
 	BusinessPrimaryColor      string                        `form:"business_primary_color"`
-	BusinessUrl               string                        `form:"business_url"`
+	BusinessURL               string                        `form:"business_url"`
 	Country                   string                        `form:"country"`
 	DebitNegativeBalances     bool                          `form:"debit_negative_balances"`
 	DefaultCurrency           string                        `form:"default_currency"`
@@ -79,7 +79,7 @@ type AccountParams struct {
 	StatementDescriptor       string                        `form:"statement_descriptor"`
 	SupportEmail              string                        `form:"support_email"`
 	SupportPhone              string                        `form:"support_phone"`
-	SupportUrl                string                        `form:"support_url"`
+	SupportURL                string                        `form:"support_url"`
 	TOSAcceptance             *TOSAcceptanceParams          `form:"tos_acceptance"`
 	Type                      AccountType                   `form:"type"`
 }
@@ -124,7 +124,7 @@ type Account struct {
 	BusinessLogo          string               `json:"business_logo"`
 	BusinessName          string               `json:"business_name"`
 	BusinessPrimaryColor  string               `json:"business_primary_color"`
-	BusinessUrl           string               `json:"business_url"`
+	BusinessURL           string               `json:"business_url"`
 	ChargesEnabled        bool                 `json:"charges_enabled"`
 	Country               string               `json:"country"`
 	DebitNegativeBalances bool                 `json:"debit_negative_balances"`
@@ -151,7 +151,7 @@ type Account struct {
 	SupportAddress            *Address          `json:"support_address"`
 	SupportEmail              string            `json:"support_email"`
 	SupportPhone              string            `json:"support_phone"`
-	SupportUrl                string            `json:"support_url"`
+	SupportURL                string            `json:"support_url"`
 	Timezone                  string            `json:"timezone"`
 
 	TOSAcceptance *struct {
