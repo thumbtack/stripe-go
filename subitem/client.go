@@ -1,5 +1,5 @@
-// Package subscriptionitem provides the /subscription_items APIs
-package subscriptionitem
+// Package subitem provides the /subscription_items APIs
+package subitem
 
 import (
 	"fmt"

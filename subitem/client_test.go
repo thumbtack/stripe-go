@@ -1,4 +1,4 @@
-package subscriptionitem
+package subitem
 
 import (
 	"testing"

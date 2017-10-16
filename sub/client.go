@@ -1,5 +1,5 @@
-// Package subscription provides the /subscriptions APIs
-package subscription
+// Package sub provides the /subscriptions APIs
+package sub
 
 import (
 	"fmt"
