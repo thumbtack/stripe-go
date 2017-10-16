@@ -69,7 +69,7 @@ type DisputeListParams struct {
 type Dispute struct {
 	Amount              uint64                `json:"amount"`
 	BalanceTransactions []*BalanceTransaction `json:"balance_transactions"`
-	Charge              string                `json:"charge"`
+	Charge              *Charge               `json:"charge"`
 	Created             int64                 `json:"created"`
 	Currency            Currency              `json:"currency"`
 	Evidence            *DisputeEvidence      `json:"evidence"`
