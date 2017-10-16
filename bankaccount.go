@@ -20,9 +20,9 @@ type BankAccountStatus string
 type BankAccountParams struct {
 	Params `form:"*"`
 
-	// AccountID is the identifier of the parent account under which bank
+	// Account is the identifier of the parent account under which bank
 	// accounts are nested.
-	AccountID string `form:"-"`
+	Account string `form:"-"`
 
 	AccountHolderName  string `form:"account_holder_name"`
 	AccountHolderType  string `form:"account_holder_type"`
@@ -90,11 +90,11 @@ type BankAccountListParams struct {
 	ListParams `form:"*"`
 
 	// The identifier of the parent account under which the bank accounts are
-	// nested. Either AccountID or Customer should be populated.
-	AccountID string `form:"-"`
+	// nested. Either Account or Customer should be populated.
+	Account string `form:"-"`
 
 	// The identifier of the parent customer under which the bank accounts are
-	// nested. Either AccountID or Customer should be populated.
+	// nested. Either Account or Customer should be populated.
 	Customer string `form:"-"`
 }
 
