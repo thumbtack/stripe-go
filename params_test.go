@@ -223,30 +223,12 @@ func TestListParams_ToParams(t *testing.T) {
 	assert.Equal(t, listParams.StripeAccount, params.StripeAccount)
 }
 
-func TestParams_SetAccount(t *testing.T) {
-	p := &stripe.Params{}
-	p.SetAccount(TestMerchantID)
-
-	if p.Account != TestMerchantID {
-		t.Fatalf("Expected Account of %v but got %v.", TestMerchantID, p.Account)
-	}
-
-	if p.StripeAccount != TestMerchantID {
-		t.Fatalf("Expected StripeAccount of %v but got %v.", TestMerchantID, p.StripeAccount)
-	}
-}
-
 func TestParams_SetStripeAccount(t *testing.T) {
 	p := &stripe.Params{}
 	p.SetStripeAccount(TestMerchantID)
 
 	if p.StripeAccount != TestMerchantID {
 		t.Fatalf("Expected Account of %v but got %v.", TestMerchantID, p.StripeAccount)
-	}
-
-	// Check that we don't set the deprecated parameter.
-	if p.Account != "" {
-		t.Fatalf("Expected empty Account but got %v.", TestMerchantID)
 	}
 }
 

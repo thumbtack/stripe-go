@@ -105,15 +105,6 @@ func TestStripeAccount(t *testing.T) {
 	assert.NoError(t, err)
 
 	assert.Equal(t, TestMerchantID, req.Header.Get("Stripe-Account"))
-
-	// Also test the deprecated Account field for now as well. This should be
-	// identical to the exercise above.
-	p = &stripe.Params{Account: TestMerchantID}
-
-	req, err = c.NewRequest("", "", "", "", nil, p)
-	assert.NoError(t, err)
-
-	assert.Equal(t, TestMerchantID, req.Header.Get("Stripe-Account"))
 }
 
 func TestUserAgent(t *testing.T) {

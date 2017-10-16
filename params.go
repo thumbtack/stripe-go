@@ -20,10 +20,6 @@ const (
 // Params is the structure that contains the common properties
 // of any *Params structure.
 type Params struct {
-	// Account is deprecated form of StripeAccount that will do the same thing.
-	// Please use StripeAccount instead.
-	Account string `form:"-"` // Passed as header
-
 	// Context used for request. It may carry deadlines, cancelation signals,
 	// and other request-scoped values across API boundaries and between
 	// processes.
@@ -164,12 +160,6 @@ func NewIdempotencyKey() string {
 	buf := make([]byte, 4)
 	rand.Read(buf)
 	return fmt.Sprintf("%v_%v", now, base64.URLEncoding.EncodeToString(buf)[:6])
-}
-
-// SetAccount sets a value for the Stripe-Account header.
-func (p *Params) SetAccount(val string) {
-	p.Account = val
-	p.StripeAccount = val
 }
 
 // SetStripeAccount sets a value for the Stripe-Account header.
