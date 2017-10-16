@@ -32,7 +32,7 @@ type EventRequest struct {
 
 // EventData is the unmarshalled object as a map.
 type EventData struct {
-	Obj                map[string]interface{}
+	Object             map[string]interface{}
 	PreviousAttributes map[string]interface{} `json:"previous_attributes"`
 	Raw                json.RawMessage        `json:"object"`
 }
@@ -53,13 +53,13 @@ type EventListParams struct {
 	Types        []string          `form:"types"`
 }
 
-// GetObjValue returns the value from the e.Data.Obj bag based on the keys hierarchy.
-func (e *Event) GetObjValue(keys ...string) string {
-	return getValue(e.Data.Obj, keys)
+// GetObjectValue returns the value from the e.Data.Object bag based on the keys hierarchy.
+func (e *Event) GetObjectValue(keys ...string) string {
+	return getValue(e.Data.Object, keys)
 }
 
-// GetPrevValue returns the value from the e.Data.Prev bag based on the keys hierarchy.
-func (e *Event) GetPrevValue(keys ...string) string {
+// GetPreviousValue returns the value from the e.Data.Prev bag based on the keys hierarchy.
+func (e *Event) GetPreviousValue(keys ...string) string {
 	return getValue(e.Data.PreviousAttributes, keys)
 }
 
@@ -74,7 +74,7 @@ func (e *EventData) UnmarshalJSON(data []byte) error {
 	}
 
 	*e = EventData(ee)
-	return json.Unmarshal(e.Raw, &e.Obj)
+	return json.Unmarshal(e.Raw, &e.Object)
 }
 
 // getValue returns the value from the m map based on the keys.
