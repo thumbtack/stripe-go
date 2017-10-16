@@ -56,7 +56,7 @@ func TestBankAccountList_ByCustomer(t *testing.T) {
 
 func TestBankAccountNew_ByAccount(t *testing.T) {
 	bankAcount, err := New(&stripe.BankAccountParams{
-		Account:          "acct_123",
+		Account:            "acct_123",
 		DefaultForCurrency: true,
 		Token:              "tok_123",
 	})
@@ -76,7 +76,7 @@ func TestBankAccountNew_ByCustomer(t *testing.T) {
 
 func TestBankAccountUpdate_ByAccount(t *testing.T) {
 	bankAcount, err := Update("ba_123", &stripe.BankAccountParams{
-		Account:          "acct_123",
+		Account:            "acct_123",
 		DefaultForCurrency: true,
 	})
 	assert.Nil(t, err)
