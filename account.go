@@ -267,7 +267,7 @@ func (ea *ExternalAccount) UnmarshalJSON(b []byte) error {
 
 // LegalEntity is the structure for properties related to an account's legal state.
 type LegalEntity struct {
-	AdditionalOwners []Owner `json:"additional_owners" form:"additional_owners,indexed"`
+	AdditionalOwners []AdditionalOwner `json:"additional_owners" form:"additional_owners,indexed"`
 
 	// AdditionalOwnersEmpty can be set to clear a legal entity's additional
 	// owners.
@@ -329,8 +329,8 @@ type DOB struct {
 // either “male” or “female”.
 type Gender string
 
-// Owner is the structure for an account owner.
-type Owner struct {
+// AdditionalOwner is the structure for an account owner.
+type AdditionalOwner struct {
 	Address      Address              `json:"address" form:"address"`
 	DOB          DOB                  `json:"dob" form:"dob"`
 	FirstName    string               `json:"first_name" form:"first_name"`
