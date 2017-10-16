@@ -15,29 +15,29 @@ type BalanceTransactionType string
 type BalanceTransactionSourceType string
 
 const (
-	// BalanceTransactionSourceCharge is a constant representing a transaction source of charge
-	BalanceTransactionSourceCharge BalanceTransactionSourceType = "charge"
+	// BalanceTransactionSourceTypeCharge is a constant representing a transaction source of charge
+	BalanceTransactionSourceTypeCharge BalanceTransactionSourceType = "charge"
 
-	// BalanceTransactionSourceDispute is a constant representing a transaction source of dispute
-	BalanceTransactionSourceDispute BalanceTransactionSourceType = "dispute"
+	// BalanceTransactionSourceTypeDispute is a constant representing a transaction source of dispute
+	BalanceTransactionSourceTypeDispute BalanceTransactionSourceType = "dispute"
 
-	// BalanceTransactionSourceApplicationFee is a constant representing a transaction source of application_fee
-	BalanceTransactionSourceApplicationFee BalanceTransactionSourceType = "application_fee"
+	// BalanceTransactionSourceTypeApplicationFee is a constant representing a transaction source of application_fee
+	BalanceTransactionSourceTypeApplicationFee BalanceTransactionSourceType = "application_fee"
 
-	// BalanceTransactionSourcePayout is a constant representing a transaction source of payout
-	BalanceTransactionSourcePayout BalanceTransactionSourceType = "payout"
+	// BalanceTransactionSourceTypePayout is a constant representing a transaction source of payout
+	BalanceTransactionSourceTypePayout BalanceTransactionSourceType = "payout"
 
-	// BalanceTransactionSourceRecipientTransfer is a constant representing a transaction source of recipient_transfer
-	BalanceTransactionSourceRecipientTransfer BalanceTransactionSourceType = "recipient_transfer"
+	// BalanceTransactionSourceTypeRecipientTransfer is a constant representing a transaction source of recipient_transfer
+	BalanceTransactionSourceTypeRecipientTransfer BalanceTransactionSourceType = "recipient_transfer"
 
-	// BalanceTransactionSourceRefund is a constant representing a transaction source of refund
-	BalanceTransactionSourceRefund BalanceTransactionSourceType = "refund"
+	// BalanceTransactionSourceTypeRefund is a constant representing a transaction source of refund
+	BalanceTransactionSourceTypeRefund BalanceTransactionSourceType = "refund"
 
-	// BalanceTransactionSourceReversal is a constant representing a transaction source of reversal
-	BalanceTransactionSourceReversal BalanceTransactionSourceType = "reversal"
+	// BalanceTransactionSourceTypeReversal is a constant representing a transaction source of reversal
+	BalanceTransactionSourceTypeReversal BalanceTransactionSourceType = "reversal"
 
-	// BalanceTransactionSourceTransfer is a constant representing a transaction source of transfer
-	BalanceTransactionSourceTransfer BalanceTransactionSourceType = "transfer"
+	// BalanceTransactionSourceTypeTransfer is a constant representing a transaction source of transfer
+	BalanceTransactionSourceTypeTransfer BalanceTransactionSourceType = "transfer"
 )
 
 // BalanceTransactionSource describes the source of a balance Transaction.
@@ -157,21 +157,21 @@ func (s *BalanceTransactionSource) UnmarshalJSON(data []byte) error {
 		*s = BalanceTransactionSource(ss)
 
 		switch s.Type {
-		case BalanceTransactionSourceApplicationFee:
+		case BalanceTransactionSourceTypeApplicationFee:
 			json.Unmarshal(data, &s.ApplicationFee)
-		case BalanceTransactionSourceCharge:
+		case BalanceTransactionSourceTypeCharge:
 			json.Unmarshal(data, &s.Charge)
-		case BalanceTransactionSourceDispute:
+		case BalanceTransactionSourceTypeDispute:
 			json.Unmarshal(data, &s.Dispute)
-		case BalanceTransactionSourcePayout:
+		case BalanceTransactionSourceTypePayout:
 			json.Unmarshal(data, &s.Payout)
-		case BalanceTransactionSourceRecipientTransfer:
+		case BalanceTransactionSourceTypeRecipientTransfer:
 			json.Unmarshal(data, &s.RecipientTransfer)
-		case BalanceTransactionSourceRefund:
+		case BalanceTransactionSourceTypeRefund:
 			json.Unmarshal(data, &s.Refund)
-		case BalanceTransactionSourceReversal:
+		case BalanceTransactionSourceTypeReversal:
 			json.Unmarshal(data, &s.Reversal)
-		case BalanceTransactionSourceTransfer:
+		case BalanceTransactionSourceTypeTransfer:
 			json.Unmarshal(data, &s.Transfer)
 		}
 	} else {
