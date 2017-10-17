@@ -29,14 +29,6 @@ const (
 	Missing       ErrorCode = "missing"
 	ProcessingErr ErrorCode = "processing_error"
 	RateLimit     ErrorCode = "rate_limit"
-
-	// These additional types are written purely for backward compatibility
-	// (the originals were given quite unsuitable names) and should be
-	// considered deprecated. Remove them on the next major version revision.
-
-	APIErr         ErrorType = ErrorTypeAPI
-	CardErr        ErrorType = ErrorTypeCard
-	InvalidRequest ErrorType = ErrorTypeInvalidRequest
 )
 
 // Error is the response returned when a call is unsuccessful.
